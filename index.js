@@ -93,7 +93,7 @@ function staticServer(root) {
 			.on('error', error)
 			.on('directory', directory)
 			.on('file', file)
-			.on('stream', inject)
+			// .on('stream', inject)
 			.pipe(res);
 	};
 }
