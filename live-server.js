@@ -5,8 +5,9 @@ var assign = require('object-assign');
 var liveServer = require("./index");
 
 var opts = {
-	host: process.env.IP,
+	host: process.env.HOST,
 	port: process.env.PORT,
+	wshost: process.env.WSHOST,
 	open: true,
 	mount: [],
 	proxy: [],
@@ -34,6 +35,10 @@ for (var i = process.argv.length - 1; i >= 2; --i) {
 	}
 	else if (arg.indexOf("--host=") > -1) {
 		opts.host = arg.substring(7);
+		process.argv.splice(i, 1);
+	}
+	else if (arg.indexOf("--wshost=") > -1) {
+		opts.wshost = arg.substring(8);
 		process.argv.splice(i, 1);
 	}
 	else if (arg.indexOf("--open=") > -1) {

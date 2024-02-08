@@ -133,6 +133,7 @@ LiveServer.start = function(options) {
 	options = options || {};
 	var host = options.host || '0.0.0.0';
 	var port = options.port !== undefined ? options.port : 8080; // 0 means random
+	var wshost = options.wshost !== undefined ? options.wshost : '';
 	var root = options.root || process.cwd();
 	var mount = options.mount || [];
 	var watchPaths = options.watch || [root];
@@ -151,6 +152,8 @@ LiveServer.start = function(options) {
 	var middleware = options.middleware || [];
 	var noCssInject = options.noCssInject;
 	var httpsModule = options.httpsModule;
+
+	INJECTED_CODE = INJECTED_CODE.replace(/__WSHOST__/g, wshost);
 
 	if (httpsModule) {
 		try {
